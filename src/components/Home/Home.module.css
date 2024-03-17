@@ -79,7 +79,7 @@
     border-radius: 1.2rem;
     max-width: 100%;
     min-width: 100%;
-    z-index: 99999;
+    z-index: 5;
 }
 
 .home__product {
@@ -89,6 +89,7 @@
   color: #000000;
   font-weight: 500;
   max-width: 100%;
+  
 }
 
 .home__product span:nth-child(1) {
@@ -102,11 +103,11 @@
     max-width: 10rem;
     min-width: 10rem;
     overflow: hidden;
-    font-size: var(--font-small);
+    font-size: 1.13rem;
 }
 .home__delete_product {
     position: sticky;
-    left: 90%;
+    left: 60%;
 }
 
 .home__delete_product *:hover {
@@ -119,5 +120,12 @@ cursor: pointer;;
     position: fixed;
     left: 30%;
     top: 15%;
-    z-index: 1;
+    z-index: 999999;
+}
+
+.home__noresult {
+ color: var(--color-accent-3);
+ font-weight: 600;
+ margin: auto auto;
+ font-size: var(--font-medium);
 }

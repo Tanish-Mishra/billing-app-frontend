@@ -54,8 +54,8 @@ useEffect(()=>{
             <span>Base Price{" (In Rs.)"}</span>
             <span>Selling Price{" (In Rs.)"}</span>
          </div>
-
-{products.map((item)=>(
+     
+{ products?.length > 0 ? products.map((item)=>(
        <>
          <div className={styles.home__product} key={item._id}>
             <span>{item.productName}</span>
@@ -69,7 +69,7 @@ useEffect(()=>{
                 basePrice: item.basePrice,
                 sellingPrice: item.sellingPrice,
               })
-            }}/> &nbsp; <Trash2 onClick={ async()=>{
+            }}/>&nbsp; <Trash2 onClick={ async()=>{
               const response = await  deleteProduct(item._id)
               if(response?.status === 200) {
                 getAllProducts()
@@ -79,7 +79,7 @@ useEffect(()=>{
          <hr/>
          </>
 
-        ))}
+        )) : <div className={styles.home__noresult}>No Products Available!</div>}
 
       
 
