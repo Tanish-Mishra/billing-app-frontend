@@ -7,6 +7,7 @@ import { getProducts,deleteProduct } from "../../apis/product";
 import { Search, StepForward } from 'lucide-react';
 import { Trash2 } from 'lucide-react';
 import { Pencil } from 'lucide-react';
+import LoadingSpin from "react-loading-spin";
 
 const Home = () => {
   const [isAddProduct,setIsAddProduct] = useState(false)
@@ -79,7 +80,16 @@ useEffect(()=>{
          <hr/>
          </>
 
-        )) : <div className={styles.home__noresult}>No Products Available!</div>}
+        )) : <div className={styles.home__noresult}><LoadingSpin
+        duration="2s"
+        width="6px"
+        timingFunction="ease-in-out"
+        direction="alternate"
+        size="55px"
+        primaryColor="#000000"
+        secondaryColor="#fafafa"
+        numberOfRotationsInAnimation={2}
+    />No Products Available!</div>}
 
       
 
