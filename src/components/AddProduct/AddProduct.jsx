@@ -119,8 +119,6 @@ const editProductData = async() => {
        }
     }  else {
         const response = await editProductData()
-        
-        console.log(response)
         if(response?.status===200) {
            productValue.current.value = ''
            baseValue.current.value = ''
