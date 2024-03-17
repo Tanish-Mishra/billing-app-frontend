@@ -79,6 +79,7 @@
     border-radius: 1.2rem;
     max-width: 100%;
     min-width: 100%;
+    z-index: 99999;
 }
 
 .home__product {
@@ -104,8 +105,8 @@
     font-size: var(--font-small);
 }
 .home__delete_product {
-    position: fixed;
-    left: 91.8%;
+    position: sticky;
+    left: 90%;
 }
 
 .home__delete_product *:hover {
