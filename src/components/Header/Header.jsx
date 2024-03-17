@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './Header.module.css'
 
-const Header = ({setIsAddProduct}) => {
+const Header = ({setIsAddProduct, setEditFormData, editFormData}) => {
     const navigate = useNavigate()
   return (
 
@@ -21,10 +21,18 @@ const Header = ({setIsAddProduct}) => {
       <button className={styles.home__header_btn}>Create Bill</button>
       <button className={styles.home__header_btn}onClick={()=>{
           setIsAddProduct(true)
+          setEditFormData({
+             ...editFormData,
+               id: "",
+               productName: "",
+               basePrice: "",
+               sellingPrice: "",
+          })
       }}>Add Prod.</button>
       <button className={styles.home__header_btn} onClick={()=>{
+        localStorage.clear()
         navigate('/login')
-      }}>Login</button>
+      }}>Logout</button>
     </div>
   </div>
     )

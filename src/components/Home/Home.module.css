@@ -116,7 +116,7 @@ cursor: pointer;;
 
 .addproduct {
     position: fixed;
-    left: 34%;
+    left: 30%;
     top: 15%;
     z-index: 1;
 }

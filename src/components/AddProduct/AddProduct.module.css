@@ -74,3 +74,10 @@
     padding: 0.5rem;
 
 }
+
+.error__text {
+    text-align: end;
+    color: red !important;
+    margin:-0.7rem 0 -0.4rem 0;
+    font-size: 0.8rem !important;
+}
