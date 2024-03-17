@@ -10,11 +10,15 @@ const AddProduct = ({ setIsAddProduct, getAllProducts, editFormData }) => {
   const productValue = useRef(null)
   const baseValue = useRef(null)
   const sellingValue = useRef(null)
+  const [basePriceData] = useState(editFormData.basePrice.replace(/,/g, ''));
+  const [sellingPriceData] = useState(editFormData.sellingPrice.replace(/,/g, ''));
   const [formData, setFormData] = useState({
     id:"" || editFormData.id,
     productName: "" || editFormData.productName,
-    basePrice: "" || editFormData.basePrice,
-    sellingPrice: "" || editFormData.sellingPrice,
+    // basePrice: "" || editFormData.basePrice,
+    basePrice: "" || basePriceData,
+    // sellingPrice: "" || editFormData.sellingPrice,
+    sellingPrice: "" || sellingPriceData,
   });
   const [error, setError] = useState({
     productName: "",
@@ -131,18 +135,12 @@ const editProductData = async() => {
              sellingPrice:"",
            })
            const allProductResponse = await getAllProducts()
-           toast.success('Product Edited Successfully!', {
-             style: {
-               border: '1px solid #713200',
-               padding: '16px',
-               color: '#713200',
-             },
-             iconTheme: {
-               primary: '#713200',
-               secondary: '#FFFAEE',
-             },
-           });
+           alert("Edited Successfully!")
+           
         }
+       
+        setIsAddProduct(false)
+
     }
     }
   };
