@@ -116,8 +116,8 @@
 
 .addproduct {
   position: fixed;
-  left: 30%;
-  top: 15%;
+  left: 32vw;
+  top: 12vh;
   z-index: 999999;
 }
 
