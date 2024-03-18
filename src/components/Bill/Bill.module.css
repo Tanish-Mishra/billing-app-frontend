@@ -1,0 +1,121 @@
+.bill {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   min-height: 100vh;
+   background-color: #dfe1e0;
+}
+
+.bill input {
+    font-size: 1rem;
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0.2rem 0 0.2rem 0;
+    min-width: 2rem;
+}
+
+.bill__body {
+    position: relative;
+    min-height: 71rem;
+    width: 50rem;
+    background: #fff;
+   border-radius: 2rem;
+   box-shadow: 0px 0px 9px 10px rgba(255,255,255,0.23);
+   padding: 5rem;
+   /* border: 2px solid var(--color-accent-3); */
+}
+
+.bill__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bill__header div {
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: var(--font-small);
+}
+.bill__title {
+   text-align: center;
+   font-weight: 600;
+   font-size: var(--font-medium-large);
+   text-transform: uppercase;
+   margin: 5rem 0 5rem 0;
+}
+
+.bill__addres_client {
+    display: flex;
+    flex-direction: column;
+}
+
+.bill__address_detail {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 2.5rem 0;
+}
+
+.bill__information {
+    /* height: 2.5rem; */
+    /* align-items: center; */
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    background: var(--color-accent-4);
+}
+
+.bill__sub_information {
+    display: flex;
+    gap: 3.8rem;
+}
+.bill__sub_pinformation {
+    display: flex;
+    gap: 4.3rem;
+}
+
+.bill__sub_pinformation span {
+    display: flex;
+    /* display: inline; */
+    max-width: 5.5rem;
+    min-width: 5.5rem;
+} 
+.bill__products_information {
+    position: relative;
+    /* border: 1px solid red; */
+    min-height: 40rem;
+    /* border: 1px solid red; */
+    margin: 1rem 0 0.5rem 0;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+  /* overflow: scroll; */
+  /* overflow-x: hidden; */
+  /* scrollbar-width: thin; */
+}
+.bill__total {
+    position: absolute;
+    bottom: 1%;
+    right: 4%;
+}
+
+.bill__product_container {
+display: flex;
+justify-content: space-between;
+ margin: 0 0 0.45rem 0;
+}
+.bill__footer {
+    position: absolute;
+    bottom: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+
+.bill__sub_pinformation input {
+    margin: 0;
+}

@@ -18,7 +18,9 @@ const Header = ({setIsAddProduct, setEditFormData, editFormData}) => {
     />
     <h3 className={styles.home__header_title}>VishuPriya Electricals</h3>
     <div className={styles.home__navigation}>
-      <button className={styles.home__header_btn}>Create Bill</button>
+      <button className={styles.home__header_btn} onClick={()=>{
+        navigate('/billing')
+      }}>Create Bill</button>
       <button className={styles.home__header_btn}onClick={()=>{
           setIsAddProduct(true)
           setEditFormData({

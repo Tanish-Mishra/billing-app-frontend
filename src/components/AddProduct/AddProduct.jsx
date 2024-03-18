@@ -1,19 +1,20 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import styles from "./AddProduct.module.css";
 
 import { addProduct } from "../../apis/product";
 import { editProduct } from "../../apis/product";
-import { Toaster,toast } from "react-hot-toast";
-
+import { Toaster, toast } from "react-hot-toast";
 
 const AddProduct = ({ setIsAddProduct, getAllProducts, editFormData }) => {
-  const productValue = useRef(null)
-  const baseValue = useRef(null)
-  const sellingValue = useRef(null)
-  const [basePriceData] = useState(editFormData.basePrice.replace(/,/g, ''));
-  const [sellingPriceData] = useState(editFormData.sellingPrice.replace(/,/g, ''));
+  const productValue = useRef(null);
+  const baseValue = useRef(null);
+  const sellingValue = useRef(null);
+  const [basePriceData] = useState(editFormData.basePrice.replace(/,/g, ""));
+  const [sellingPriceData] = useState(
+    editFormData.sellingPrice.replace(/,/g, "")
+  );
   const [formData, setFormData] = useState({
-    id:"" || editFormData.id,
+    id: "" || editFormData.id,
     productName: "" || editFormData.productName,
     // basePrice: "" || editFormData.basePrice,
     basePrice: "" || basePriceData,
@@ -32,15 +33,15 @@ const AddProduct = ({ setIsAddProduct, getAllProducts, editFormData }) => {
     });
   };
 
-  const addNewProduct = async() => {
-    const response = await addProduct({...formData})
-    return response
-}
+  const addNewProduct = async () => {
+    const response = await addProduct({ ...formData });
+    return response;
+  };
 
-const editProductData = async() => {
-    const response = await editProduct({...formData})
-    return response
-}
+  const editProductData = async () => {
+    const response = await editProduct({ ...formData });
+    return response;
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -95,65 +96,57 @@ const editProductData = async() => {
       isValid = false;
     }
 
-    if(isValid) {
-     if(!editFormData.id) {  
-       const response = await addNewProduct()
-       if(response?.status===201) {
-          productValue.current.value = ''
-          baseValue.current.value = ''
-          sellingValue.current.value = ''
+    if (isValid) {
+      if (!editFormData.id) {
+        const response = await addNewProduct();
+        if (response?.status === 201) {
+          productValue.current.value = "";
+          baseValue.current.value = "";
+          sellingValue.current.value = "";
           setFormData({
             ...formData,
-            productName:"",
-            basePrice:"",
-            sellingPrice:"",
-          })
-          const allProductResponse = await getAllProducts()
-          toast.success('Product Saved Successfully!', {
+            productName: "",
+            basePrice: "",
+            sellingPrice: "",
+          });
+          const allProductResponse = await getAllProducts();
+          toast.success("Product Saved Successfully!", {
             style: {
-              border: '1px solid #713200',
-              padding: '16px',
-              color: '#713200',
+              border: "1px solid #713200",
+              padding: "16px",
+              color: "#713200",
             },
             iconTheme: {
-              primary: '#713200',
-              secondary: '#FFFAEE',
+              primary: "#713200",
+              secondary: "#FFFAEE",
             },
           });
-       }
-    }  else {
-        const response = await editProductData()
-        if(response?.status===200) {
-           productValue.current.value = ''
-           baseValue.current.value = ''
-           sellingValue.current.value = ''
-           setFormData({
-             ...formData,
-             id:"",
-             productName:"",
-             basePrice:"",
-             sellingPrice:"",
-           })
-           const allProductResponse = await getAllProducts()
-           alert("Edited Successfully!")
-           
         }
-       
-        setIsAddProduct(false)
+      } else {
+        const response = await editProductData();
+        if (response?.status === 200) {
+          productValue.current.value = "";
+          baseValue.current.value = "";
+          sellingValue.current.value = "";
+          setFormData({
+            ...formData,
+            id: "",
+            productName: "",
+            basePrice: "",
+            sellingPrice: "",
+          });
+          const allProductResponse = await getAllProducts();
+          alert("Edited Successfully!");
+        }
 
-    }
+        setIsAddProduct(false);
+      }
     }
   };
 
-
-
-
   return (
     <div className={styles.product}>
-        <Toaster
-         position="top-right"
-         reverseOrder={false}
-        />
+      <Toaster position="top-right" reverseOrder={false} />
       <h3 className={styles.home__header_title}>VishuPriya Electricals</h3>
 
       <div className={styles.product__container}>
@@ -175,9 +168,8 @@ const editProductData = async() => {
           }}
           value={formData.productName}
           onKeyDown={(e) => {
-            if (e.key === "Enter")
-                handleSubmit(e)
-            }}
+            if (e.key === "Enter") handleSubmit(e);
+          }}
         />
       </div>
       {error.productName && (
@@ -202,9 +194,8 @@ const editProductData = async() => {
           }}
           value={formData.basePrice}
           onKeyDown={(e) => {
-            if (e.key === "Enter")
-                handleSubmit(e)
-            }}
+            if (e.key === "Enter") handleSubmit(e);
+          }}
         />
       </div>
       {error.basePrice && (
@@ -229,9 +220,8 @@ const editProductData = async() => {
           }}
           value={formData.sellingPrice}
           onKeyDown={(e) => {
-            if (e.key === "Enter")
-                handleSubmit(e)
-            }}
+            if (e.key === "Enter") handleSubmit(e);
+          }}
         />
       </div>
       {error.sellingPrice && (
@@ -253,7 +243,7 @@ const editProductData = async() => {
             handleSubmit(event);
           }}
         >
-         {editFormData.id ? "Edit Prod.": "Add Prod."}
+          {editFormData.id ? "Edit Prod." : "Add Prod."}
         </button>
       </div>
     </div>
