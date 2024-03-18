@@ -45,7 +45,10 @@ useEffect(()=>{
               getAllProducts()
             }
               setTitle(event.target.value)
-          }} className={styles.home__input}/> 
+          }}    onKeyDown={(e) => {
+            if (e.key === "Enter")
+            getAllProducts()
+            }} className={styles.home__input}/> 
           <button className={styles.home__body_searchbtn} onClick={()=>{
              getAllProducts()
           }}><Search/></button>
