@@ -174,6 +174,10 @@ const editProductData = async() => {
             }`,
           }}
           value={formData.productName}
+          onKeyDown={(e) => {
+            if (e.key === "Enter")
+                handleSubmit(e)
+            }}
         />
       </div>
       {error.productName && (
@@ -197,6 +201,10 @@ const editProductData = async() => {
             }`,
           }}
           value={formData.basePrice}
+          onKeyDown={(e) => {
+            if (e.key === "Enter")
+                handleSubmit(e)
+            }}
         />
       </div>
       {error.basePrice && (
@@ -220,6 +228,10 @@ const editProductData = async() => {
             }`,
           }}
           value={formData.sellingPrice}
+          onKeyDown={(e) => {
+            if (e.key === "Enter")
+                handleSubmit(e)
+            }}
         />
       </div>
       {error.sellingPrice && (

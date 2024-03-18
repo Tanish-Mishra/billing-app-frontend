@@ -41,6 +41,9 @@ useEffect(()=>{
           <span>Products :</span>
           <div className={styles.home__body_searcharea}>
           <input type="text" placeholder="Search Product" onChange={(event)=>{
+            if(event.target.value==="") {
+              getAllProducts()
+            }
               setTitle(event.target.value)
           }} className={styles.home__input}/> 
           <button className={styles.home__body_searchbtn} onClick={()=>{
