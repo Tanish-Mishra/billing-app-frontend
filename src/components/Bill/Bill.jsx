@@ -228,6 +228,13 @@ const Bill = () => {
       },
     });
   }
+
+  useMemo(()=>{
+  const totalBill = invoiceProducts.reduce((acc,item)=>{
+                return acc + (item.quantity * item.sellingPrice)    
+  },0)
+  setTotalAmount(totalBill)
+  },[invoiceProducts])
    
   return (
     <div className={styles.bill__area}>
