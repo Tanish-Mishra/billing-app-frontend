@@ -6,17 +6,28 @@ import toast, { Toaster } from 'react-hot-toast';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import LoadingSpin from "react-loading-spin";
-
+import AddProduct from "../AddProduct/AddProduct";
 import { CirclePlus } from "lucide-react";
 import { CircleMinus } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 const Bill = () => {
+  const navigate = useNavigate()
   const [totalBills, setTotalBills] = useState([]);
   const [totalAmount, setTotalAmount] = useState(0);
   const [allProducts, setAllProducts] = useState([]);
   const [invoiceProducts, setInvoiceProducts] = useState([]);
   const [newItem,setNewItem] = useState([])
+  const [isAddProduct,setIsAddProduct] = useState(false)
+  const [clientName,setClientName] = useState("fa")
+  const [clientMobileNo,setClientMobileNo] = useState("fda")
 
+  const [editFormData, setEditFormData] = useState({
+    id: "",
+    productName: "",
+    basePrice: "",
+    sellingPrice: "",
+  });
   const pdfRef = useRef();
 
   const getBillData = async () => {
@@ -33,6 +44,11 @@ const Bill = () => {
   // useEffect(()=> {
   //  getAllProducts()
   // },[])
+
+  const createBillData = async() => {
+    const response = await createBill(clientName, clientMobileNo, totalAmount, invoiceProducts); 
+      return response
+  }
 
   const downloadPdf = () => {
     const input = pdfRef.current;
@@ -239,10 +255,27 @@ const Bill = () => {
    
   return (
     <div className={styles.bill__area}>
+ {isAddProduct ? (
+        <div className={styles.bill__addproduct}>
+          <AddProduct
+            setIsAddProduct={setIsAddProduct}
+            getAllProducts={getAllProducts}
+            editFormData={editFormData}
+          />
+        </div>
+      ) : (
+        <></>
+      )}
+
+
       <Toaster
   position="top-right"
   reverseOrder={false}
 />
+
+{/* product  */}
+
+
       <div className={styles.home__header}>
         <img
           src="https://img.freepik.com/free-vector/colorful-bird-illustration-gradient_343694-1741.jpg?w=1380&t=st=1710574664~exp=1710575264~hmac=be6529fbaaf32a6b879cc59314d53e1ea8485a4f7b16d48c3538db29eec60d8d"
@@ -252,25 +285,47 @@ const Bill = () => {
             borderRadius: "50%",
           }}
           alt="error"
+          onClick={()=>{
+             navigate('/')
+          }}
+          className={styles.home__header_img}
         />
         <h3 className={styles.home__header_title}>VishuPriya Electricals</h3>
         <div className={styles.home__navigation}>
+        <button className={styles.home__header_btn} onClick={()=>{ setIsAddProduct(true)}}>Add Prod.</button>
+
           <button
             className={styles.home__header_btn}
-            onClick={() => {
-              printPdf();
+            onClick={async() => {
+              // downloadPdf();
+
+              const responseData = await createBillData()
+              if(responseData.status === 201) {
+                toast.success('Billed Successfully!', {
+                  style: {
+                    border: '1px solid #713200',
+                    padding: '16px',
+                    color: '#713200',
+                  },
+                  iconTheme: {
+                    primary: '#713200',
+                    secondary: '#FFFAEE',
+                  },
+                });  
+              }
+              
             }}
           >
-            Print Bill
+            Print/Get Bill
           </button>
-          <button
+          {/* <button
             className={styles.home__header_btn}
             onClick={() => {
               downloadPdf();
             }}
           >
-            Download Pdf
-          </button>
+            Get Bill
+          </button> */}
           <button className={styles.home__header_btn}>Whatsapp</button>
         </div>
       </div>
@@ -360,9 +415,6 @@ const Bill = () => {
           })}
         </div>
         </div>
-      <button className={styles.home__additem_btn} onClick={()=>{
-            addNewItem()
-      }}>Add Item</button>
       </div>
 
       <div className={styles.bill}>
@@ -397,10 +449,11 @@ const Bill = () => {
                 type="text"
                 name="clientName"
                 placeholder="Your Client Name"
+                onChange={(event)=>{setClientName(event.target.value)}}
               />
               <span>
                 +91
-                <input type="text" name="contactNo" placeholder="Contact No." />
+                <input type="text" name="contactNo" placeholder="Contact No." onChange={(event)=>{setClientMobileNo(event.target.value)}} />
               </span>
             </div>
 

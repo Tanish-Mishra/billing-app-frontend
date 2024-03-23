@@ -233,7 +233,8 @@ justify-content: space-between;
 
 .home__search_allproducts span {
     font-size: 0.9rem;
-    font-weight: 700;
+    font-weight: 600;
+    color: var(--color-accent-3)
 }
 
 .home__priceandadd {
@@ -282,4 +283,18 @@ justify-content: space-between;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+}
+
+.bill__addproduct {
+    position: fixed;
+    top: 18%;
+    left: 30%;
+    z-index: 99999;
+}
+.home__header_img{
+    cursor: pointer;
+}
+
+.home__header_img:hover {
+    scale: 1.05;
 }

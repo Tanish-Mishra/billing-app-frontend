@@ -13,13 +13,13 @@ export const getBills = async() => {
       console.log(error)
   }
 }
-export const createBill = async() => {
+export const createBill = async(clientName, contactNo, totalAmount, products) => {
   try {
     const reqUrl = `${BACKENDURI}/bill/create-bill`
     const token = localStorage.getItem("token")
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    const response = await axios.post(reqUrl,{clientName, contactNo, totalAmount})
-    return response.data
+    const response = await axios.post(reqUrl,{clientName, contactNo, totalAmount, products})
+    return response
   } catch (error) {
       console.log(error)
   }
