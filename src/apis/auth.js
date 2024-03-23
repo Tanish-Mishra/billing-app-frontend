@@ -14,4 +14,3 @@ export const checkLogin = async({email, password}) => {
       console.log(error)
  }
 }
-
