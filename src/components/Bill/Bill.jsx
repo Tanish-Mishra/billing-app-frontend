@@ -5,6 +5,7 @@ import { getProducts } from "../../apis/product";
 import toast, { Toaster } from 'react-hot-toast';
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
+import LoadingSpin from "react-loading-spin";
 
 import { CirclePlus } from "lucide-react";
 import { CircleMinus } from 'lucide-react';
@@ -298,8 +299,8 @@ const Bill = () => {
 
 
         <div className={styles.home__search_results}>
-          {allProducts.map((item) => {
-            return (
+          {   allProducts?.length > 0 ? (  allProducts?.map((item) => (
+          
               <div className={styles.home__search_allproducts}>
                 <span>{item.productName}</span>
                 <span className={styles.home__priceandadd}>
@@ -315,8 +316,21 @@ const Bill = () => {
                   </span>
                 </span>
               </div>
-            );
-          })}
+        
+          ))) : (<div className={styles.home__noresult_productbill}>
+            <LoadingSpin
+              duration="2s"
+              width="4px"
+              timingFunction="ease-in-out"
+              direction="alternate"
+              size="55px"
+              primaryColor="#000000"
+              secondaryColor="#fafafa"
+              numberOfRotationsInAnimation={2}
+            />
+            No Products Available!
+          </div>) }
+
         </div>
         </div>
  <div>

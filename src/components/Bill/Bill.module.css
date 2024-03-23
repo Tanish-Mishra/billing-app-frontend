@@ -275,3 +275,11 @@ justify-content: space-between;
 .home__additem_btn:hover {
     scale: 1.05;
 }
+
+.home__noresult_productbill {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
