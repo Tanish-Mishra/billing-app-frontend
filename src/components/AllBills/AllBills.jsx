@@ -135,6 +135,17 @@ bills?.length > 0 ? (     bills?.map((item)=>(
         <div className={styles.home__trash_bin} onClick={async()=>{
            const response =  await deleteBill(item._id)
          if(response?.status===200) {
+            toast.success('Bill Deleted!', {
+                style: {
+                  border: '1px solid #713200',
+                  padding: '16px',
+                  color: '#713200',
+                },
+                iconTheme: {
+                  primary: '#713200',
+                  secondary: '#FFFAEE',
+                },
+              });    
              getAllBills()
          }
         }}><Trash2/></div>

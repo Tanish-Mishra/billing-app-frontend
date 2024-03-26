@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Home.module.css";
 
+import toast, { Toaster } from 'react-hot-toast';
+
 import Header from "../Header/Header";
 import AddProduct from "../AddProduct/AddProduct";
 import { getProducts, deleteProduct } from "../../apis/product";
@@ -32,6 +34,11 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
+       <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
+
       <Header
         setIsAddProduct={setIsAddProduct}
         setEditFormData={setEditFormData}
@@ -57,9 +64,8 @@ const Home = () => {
               type="text"
               placeholder="Search Product"
               onChange={(event) => {
-                if (event.target.value === "") {
                   getAllProducts();
-                }
+
                 setTitle(event.target.value);
               }}
               onKeyDown={(e) => {
@@ -111,6 +117,17 @@ const Home = () => {
                         onClick={async () => {
                           const response = await deleteProduct(item._id);
                           if (response?.status === 200) {
+                            toast.success('Product Deleted!', {
+                              style: {
+                                border: '1px solid #713200',
+                                padding: '16px',
+                                color: '#713200',
+                              },
+                              iconTheme: {
+                                primary: '#713200',
+                                secondary: '#FFFAEE',
+                              },
+                            });    
                             getAllProducts();
                           }
                         }}
