@@ -48,6 +48,7 @@ const Home = () => {
       ) : (
         <></>
       )}
+
       <div className={styles.home__body}>
         <div className={styles.home__body_header}>
           <span>Products :</span>

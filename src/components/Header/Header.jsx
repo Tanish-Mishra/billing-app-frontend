@@ -22,15 +22,16 @@ const Header = ({setIsAddProduct, setEditFormData, editFormData}) => {
         navigate('/billing')
       }}>Create Bill</button>
       <button className={styles.home__header_btn}onClick={()=>{
-          setIsAddProduct(true)
-          setEditFormData({
-             ...editFormData,
-               id: "",
-               productName: "",
-               basePrice: "",
-               sellingPrice: "",
-          })
+        setIsAddProduct(true)
+        setEditFormData({
+          ...editFormData,
+          id: "",
+          productName: "",
+          basePrice: "",
+          sellingPrice: "",
+        })
       }}>Add Prod.</button>
+      <button className={styles.home__header_btn} onClick={()=>{navigate('/dashboard')}}>All Bills</button>
       <button className={styles.home__header_btn} onClick={()=>{
         localStorage.clear()
         navigate('/login')

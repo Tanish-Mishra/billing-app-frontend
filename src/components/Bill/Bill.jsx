@@ -21,6 +21,7 @@ const Bill = () => {
   const [isAddProduct,setIsAddProduct] = useState(false)
   const [clientName,setClientName] = useState("fa")
   const [clientMobileNo,setClientMobileNo] = useState("fda")
+  const [paymentMethod,setPaymentMethod] = useState("CASH")
 
   const [editFormData, setEditFormData] = useState({
     id: "",
@@ -46,7 +47,7 @@ const Bill = () => {
   // },[])
 
   const createBillData = async() => {
-    const response = await createBill(clientName, clientMobileNo, totalAmount, invoiceProducts); 
+    const response = await createBill(clientName, clientMobileNo, totalAmount, invoiceProducts, paymentMethod); 
       return response
   }
 
@@ -297,7 +298,7 @@ const Bill = () => {
           <button
             className={styles.home__header_btn}
             onClick={async() => {
-              // downloadPdf();
+             
 
               const responseData = await createBillData()
               if(responseData.status === 201) {
@@ -313,7 +314,7 @@ const Bill = () => {
                   },
                 });  
               }
-              
+              downloadPdf();
             }}
           >
             Print/Get Bill
@@ -327,10 +328,14 @@ const Bill = () => {
             Get Bill
           </button> */}
           <button className={styles.home__header_btn}>Whatsapp</button>
+          <button className={styles.home__header_btn} onClick={()=>{navigate('/dashboard')}}>All Bills</button>
+          <button className={styles.home__header_btn} onClick={()=>{
+            navigate('/')
+          }}>Home</button>
         </div>
       </div>
 
-
+  
       <div className={styles.home__search_product}>
 
         <div>
@@ -571,6 +576,9 @@ const Bill = () => {
                   type="text"
                   name="paymentMode"
                   placeholder="Cash/UPI"
+                  onChange={(event)=>{
+  setPaymentMethod(event.target.value)
+                  }}
                   style={{
                     textTransform: "uppercase",
                   }}
