@@ -114,7 +114,9 @@ bills?.length > 0 ? (     bills?.map((item)=>(
               <span>Name: {item.clientName}</span>
               <span>Mobile No: {item.contactNo}</span>
               <span>Total Amount: &#8377;{item.totalAmount}</span>
-              <span>Payment Method: {item.paymentMethod}</span>
+              <span>Payment Method: <span style={{
+                textTransform: "uppercase"
+              }}>{item.paymentMethod}</span></span>
             </div>
           </div>
 
