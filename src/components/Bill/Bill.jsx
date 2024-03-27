@@ -247,6 +247,21 @@ const Bill = () => {
     });
   }
 
+  const convertStringToInteger = (value) => {
+    let stringWithComma = `${value}`;
+   let number = parseFloat(stringWithComma.replace(/,/g, ''));
+   return number;
+  }
+
+  const convertIntegerToString = (quantity,sellingPrice) => {
+
+    let number = quantity*sellingPrice;
+    let options = { style: 'decimal' }; // You can customize options as needed
+    let formattedString = number.toLocaleString('en-US', options);
+    return formattedString;
+
+  }
+
   useMemo(()=>{
   const totalBill = invoiceProducts.reduce((acc,item)=>{
                 return acc + (item.quantity * item.sellingPrice)    
@@ -301,7 +316,7 @@ const Bill = () => {
              
 
               const responseData = await createBillData()
-              if(responseData.status === 201) {
+              if(responseData?.status === 201) {
                 toast.success('Billed Successfully!', {
                   style: {
                     border: '1px solid #713200',
@@ -466,9 +481,20 @@ const Bill = () => {
               <div>
                 <b>From:</b>
               </div>
-              <span>Vishnu Priya Electrical</span>
-              <span>9450839388 </span>
-              <span>Lalganj Ajhara,Pratabgarh</span>
+              <input
+                type="text"
+                name="clientName"
+                placeholder="Your Business Name"
+              />
+              <span>
+                +91
+                <input type="text" name="contactNo" placeholder="Contact No."/>
+              </span>
+              <input
+                type="text"
+                name="clientName"
+                placeholder="Business Address"
+              />
             </div>
           </div>
           <div className={styles.bill__item_container}>
@@ -496,7 +522,7 @@ const Bill = () => {
             <div className={styles.bill__products_information}>
               {/* Add Products here  */}
 
-              {invoiceProducts.map((data) => (
+              {invoiceProducts?.map((data) => (
                 <>
                 <div className={styles.bill__product_container}>
                   <span>
@@ -534,7 +560,7 @@ const Bill = () => {
                        onChange={(event)=>{onEditSellingPrice(event,data)}}
                       />
                     </span>
-                    <span>&#8377;&nbsp; {data.quantity*data.sellingPrice}</span>
+                    <span>&#8377;&nbsp; {convertIntegerToString(convertStringToInteger(data?.quantity),convertStringToInteger(data?.sellingPrice))}</span>
                   </div>
                  
                 </div>
