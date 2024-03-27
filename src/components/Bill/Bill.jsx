@@ -19,8 +19,8 @@ const Bill = () => {
   const [invoiceProducts, setInvoiceProducts] = useState([]);
   const [newItem,setNewItem] = useState([])
   const [isAddProduct,setIsAddProduct] = useState(false)
-  const [clientName,setClientName] = useState("fa")
-  const [clientMobileNo,setClientMobileNo] = useState("fda")
+  const [clientName,setClientName] = useState("")
+  const [clientMobileNo,setClientMobileNo] = useState("")
   const [paymentMethod,setPaymentMethod] = useState("CASH")
 
   const [editFormData, setEditFormData] = useState({
