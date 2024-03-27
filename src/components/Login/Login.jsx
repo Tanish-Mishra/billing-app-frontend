@@ -96,7 +96,7 @@ toast.error('Check Password/Username.', {
           reverseOrder={false}
         />
       <div className={styles.login__container}>
-        <h3 className={styles.login__heading}>Vishnu Priya Electricals</h3>
+        <h3 className={styles.login__heading}>BillZy Billing Solutions</h3>
         <p>Your Personal Billing Software</p>
         <input
           type="text"
