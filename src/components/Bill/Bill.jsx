@@ -306,7 +306,7 @@ const Bill = () => {
           }}
           className={styles.home__header_img}
         />
-        <h3 className={styles.home__header_title}>VishuPriya Electricals</h3>
+        <h3 className={styles.home__header_title}>BillZy Solutions</h3>
         <div className={styles.home__navigation}>
         <button className={styles.home__header_btn} onClick={()=>{ setIsAddProduct(true)}}>Add Prod.</button>
 
