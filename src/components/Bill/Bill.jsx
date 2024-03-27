@@ -268,12 +268,15 @@ await html2canvas(input).then((canvas) => {
 
   useMemo(()=>{
   const totalBill = invoiceProducts.reduce((acc,item)=>{
-                return acc + (parseInt(item?.quantity) * parseFloat(item?.sellingPrice.replace(/,/g, '')))    
+                return acc + (parseInt(item?.quantity) * parseFloat(item?.sellingPrice?.replace(/,/g, '')))    
   },0)
   let options = { style: 'decimal' };
   const formattedTotalBill = totalBill.toLocaleString('en-US', options)
   setTotalAmount(formattedTotalBill)
   },[invoiceProducts])
+
+
+  
    
   return (
     <div className={styles.bill__area}>
@@ -578,6 +581,10 @@ await html2canvas(input).then((canvas) => {
                         placeholder="Price"
                        value={data?.sellingPrice || event.target.value}
                        onChange={(event)=>{onEditSellingPrice(event,data)}}
+                       disabled 
+                       style={{
+                        color: "#22384c"
+                       }}
                       />
                     </span>
                     <span>&#8377;&nbsp; {convertIntegerToString(convertStringToInteger(data?.quantity),convertStringToInteger(data?.sellingPrice))}</span>
