@@ -264,7 +264,7 @@ const Bill = () => {
 
   useMemo(()=>{
   const totalBill = invoiceProducts.reduce((acc,item)=>{
-                return acc + (item.quantity * item.sellingPrice)    
+                return acc + (parseInt(item?.quantity) * parseFloat(item?.sellingPrice.replace(/,/g, '')))    
   },0)
   setTotalAmount(totalBill)
   },[invoiceProducts])
