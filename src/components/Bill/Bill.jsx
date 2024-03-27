@@ -51,10 +51,10 @@ const Bill = () => {
       return response
   }
 
-  const downloadPdf = () => {
+  const downloadPdf = async() => {
     const input = pdfRef.current;
 
-    html2canvas(input).then((canvas) => {
+await html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
 
       const pdf = new jsPDF("p", "mm", "a4", true);
@@ -89,12 +89,16 @@ const Bill = () => {
 
       pdf.save("invoice.pdf");
     });
+   
+    return {
+      exitCode: 0
+    }
   };
 
-  const printPdf = () => {
+  const printPdf =  async() => {
     const input = pdfRef.current;
 
-    html2canvas(input).then((canvas) => {
+  await  html2canvas(input).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
 
       const pdf = new jsPDF("p", "mm", "a4", true);
@@ -331,7 +335,12 @@ const Bill = () => {
                   },
                 });  
               }
-              downloadPdf();
+              const responseCode = await downloadPdf();
+              if(responseCode?.exitCode === 0) {
+                  window.location.reload()
+              }
+              
+              
             }}
           >
             Print/Get Bill
