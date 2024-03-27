@@ -4,6 +4,8 @@ import styles from "./Login.module.css";
 import { checkLogin } from "../../apis/auth";
 import toast, { Toaster } from 'react-hot-toast';
 
+
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -96,10 +98,12 @@ toast.error('Check Password/Username.', {
   },[])
   return (
     <div className={styles.login}>
+  
         <Toaster
           position="top-right"
           reverseOrder={false}
         />
+<DummyUser/>
       <div className={styles.login__container}>
         <h3 className={styles.login__heading}>BillZy Billing Solutions</h3>
         <p>Your Personal Billing Software</p>
@@ -138,4 +142,22 @@ toast.error('Check Password/Username.', {
   );
 };
 
+
+const DummyUser = () => {
+
+
+    return (
+      <div className={styles.admin}>
+            <h3>Guest User Login :</h3> 
+ <div className={styles.admin__credentials}>
+  <span><b>Email:</b> &nbsp;<span style={{
+    fontWeight: "500"
+  }}>guest@gmail.com </span></span>
+  <span><b>Password:</b>&nbsp;<span style={{
+    fontWeight: "500"
+  }}>Guest@123</span></span>
+  </div> 
+       </div>
+    )
+}
 export default Login;
