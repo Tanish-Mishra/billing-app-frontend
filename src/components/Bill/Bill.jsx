@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 const Bill = () => {
   const navigate = useNavigate()
   const [totalBills, setTotalBills] = useState([]);
-  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalAmount, setTotalAmount] = useState("");
   const [allProducts, setAllProducts] = useState([]);
   const [invoiceProducts, setInvoiceProducts] = useState([]);
   const [newItem,setNewItem] = useState([])
@@ -266,7 +266,9 @@ const Bill = () => {
   const totalBill = invoiceProducts.reduce((acc,item)=>{
                 return acc + (parseInt(item?.quantity) * parseFloat(item?.sellingPrice.replace(/,/g, '')))    
   },0)
-  setTotalAmount(totalBill)
+  let options = { style: 'decimal' };
+  const formattedTotalBill = totalBill.toLocaleString('en-US', options)
+  setTotalAmount(formattedTotalBill)
   },[invoiceProducts])
    
   return (
