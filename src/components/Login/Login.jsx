@@ -6,6 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 const Login = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -89,6 +90,10 @@ toast.error('Check Password/Username.', {
       }
     }
   }
+
+  useEffect(()=>{
+ localStorage.clear()
+  },[])
   return (
     <div className={styles.login}>
         <Toaster
