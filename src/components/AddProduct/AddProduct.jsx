@@ -147,7 +147,7 @@ const AddProduct = ({ setIsAddProduct, getAllProducts, editFormData }) => {
   return (
     <div className={styles.product}>
       <Toaster position="top-right" reverseOrder={false} />
-      <h3 className={styles.home__header_title}>VishuPriya Electricals</h3>
+      <h3 className={styles.home__header_title}>Billzy Solutions</h3>
 
       <div className={styles.product__container}>
         <label>
