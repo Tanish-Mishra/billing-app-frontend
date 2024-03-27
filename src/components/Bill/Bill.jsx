@@ -459,6 +459,15 @@ await html2canvas(input).then((canvas) => {
               <span>
                 <b>Date:</b> {today}
               </span>
+              <span>
+                <b>GSTIN:</b> <input
+                type="text"
+                name="gstNumber"
+                placeholder="Enter GST Number"
+                onChange={(event)=>{setClientName(event.target.value)}}
+              />
+              </span>
+             
             </div>
             <img
               src="https://img.freepik.com/free-vector/colorful-bird-illustration-gradient_343694-1741.jpg?w=1380&t=st=1710574664~exp=1710575264~hmac=be6529fbaaf32a6b879cc59314d53e1ea8485a4f7b16d48c3538db29eec60d8d"
