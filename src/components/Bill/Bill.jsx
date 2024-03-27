@@ -41,6 +41,21 @@ const Bill = () => {
     setAllProducts(response?.products);
     return response;
   };
+  
+  const toastError = (msg) => {
+    toast.error(`${msg}`, {
+      style: {
+        border: '1px solid #713200',
+        padding: '16px',
+        color: '#713200',
+      },
+      iconTheme: {
+        primary: '#713200',
+        secondary: '#FFFAEE',
+      },
+    });  
+  }
+
 
   // useEffect(()=> {
   //  getAllProducts()
@@ -322,7 +337,12 @@ await html2canvas(input).then((canvas) => {
           <button
             className={styles.home__header_btn}
             onClick={async() => {
-             
+              let isValid = true;
+             if(!clientMobileNo.trim() || !clientName.trim()) {
+                    isValid = false;
+                    toastError("Mobile/Client is Required!")
+             }  
+             if(isValid === true) {
 
               const responseData = await createBillData()
               if(responseData?.status === 201) {
@@ -342,7 +362,7 @@ await html2canvas(input).then((canvas) => {
               if(responseCode?.exitCode === 0) {
                   window.location.reload()
               }
-              
+            }
               
             }}
           >
