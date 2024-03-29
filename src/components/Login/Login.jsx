@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
 import { checkLogin } from "../../apis/auth";
 import toast, { Toaster } from 'react-hot-toast';
+import LoadingSpin from "react-loading-spin";
 
 
 
 const Login = () => {
   const navigate = useNavigate();
-
+  const [isLogin,setIsLogin] = useState(true)
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -72,8 +73,8 @@ const Login = () => {
         });
         isValid = false
       }   
-
     if(isValid) {
+setIsLogin(false)
       const response =  await authLogin()
       if(response?.token) {
         navigate('/')
@@ -135,7 +136,20 @@ toast.error('Check Password/Username.', {
           className={styles.login__submitbtn}
           onClick={(event)=>{handleSubmit(event)}}
         >
-          Login
+          { isLogin ? 
+            "Login" : 
+  
+          <LoadingSpin
+    duration="2s"
+    width="4px"
+    timingFunction="ease-in-out"
+    direction="alternate"
+    size="30px"
+    primaryColor="#000000"
+    secondaryColor="#fafafa"
+    numberOfRotationsInAnimation={2}
+  />
+          }
         </button>
       </div>
     </div>
