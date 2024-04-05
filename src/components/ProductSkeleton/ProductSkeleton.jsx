@@ -4,7 +4,7 @@ import styles from './ProductSkeleton.module.css'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 const ProductSkeleton = () => {
- const totalSkeleton = Array(8).fill(0)
+ const totalSkeleton = Array(5).fill(0)
   return (
 
     <>
