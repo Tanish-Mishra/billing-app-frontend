@@ -12,6 +12,9 @@ import { deleteBill } from "../../apis/bills";
 import LoadingSpin from "react-loading-spin";
 import { Trash2 } from "lucide-react";
 
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 const AllBills = () => {
   const navigate = useNavigate();

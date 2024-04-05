@@ -10,6 +10,8 @@ import { Search, StepForward } from "lucide-react";
 import { Trash2 } from "lucide-react";
 import { Pencil } from "lucide-react";
 import LoadingSpin from "react-loading-spin";
+import ProductSkeleton from "../ProductSkeleton/ProductSkeleton";
+
 
 const Home = () => {
   const [isAddProduct, setIsAddProduct] = useState(false);
@@ -139,19 +141,7 @@ const Home = () => {
               </>
             ))
           ) : (
-            <div className={styles.home__noresult}>
-              <LoadingSpin
-                duration="2s"
-                width="6px"
-                timingFunction="ease-in-out"
-                direction="alternate"
-                size="55px"
-                primaryColor="#000000"
-                secondaryColor="#fafafa"
-                numberOfRotationsInAnimation={2}
-              />
-              No Products Available!
-            </div>
+           <ProductSkeleton/>
           )}
         </div>
       </div>
