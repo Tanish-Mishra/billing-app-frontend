@@ -10,6 +10,7 @@ import AddProduct from "../AddProduct/AddProduct";
 import { CirclePlus } from "lucide-react";
 import { CircleMinus } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import FileShare from "../FileShare/FileShare";
 
 const Bill = () => {
   const navigate = useNavigate()
@@ -22,6 +23,7 @@ const Bill = () => {
   const [clientName,setClientName] = useState("")
   const [clientMobileNo,setClientMobileNo] = useState("")
   const [paymentMethod,setPaymentMethod] = useState("CASH")
+  const [isFileActive,setIsFileActive] = useState(false)
 
   const [editFormData, setEditFormData] = useState({
     id: "",
@@ -312,6 +314,8 @@ await html2canvas(input).then((canvas) => {
   position="top-right"
   reverseOrder={false}
 />
+{isFileActive && <FileShare setIsFileActive={setIsFileActive}/>}
+
 
 {/* product  */}
 
@@ -332,7 +336,9 @@ await html2canvas(input).then((canvas) => {
         />
         <h3 className={styles.home__header_title}>BillZy Solutions</h3>
         <div className={styles.home__navigation}>
-        <button className={styles.home__header_btn} onClick={()=>{ setIsAddProduct(true)}}>Add Prod.</button>
+        <button className={styles.home__header_btn} onClick={()=>{ setIsAddProduct(true)
+        setIsFileActive(false)
+        }}>Add Prod.</button>
 
           <button
             className={styles.home__header_btn}
@@ -376,7 +382,9 @@ await html2canvas(input).then((canvas) => {
           >
             Get Bill
           </button> */}
-          <button className={styles.home__header_btn}>Whatsapp</button>
+          <button className={styles.home__header_btn} onClick={()=>{setIsFileActive(!isFileActive)
+          setIsAddProduct(false)
+          }}>Whatsapp</button>
           <button className={styles.home__header_btn} onClick={()=>{navigate('/dashboard')}}>All Bills</button>
           <button className={styles.home__header_btn} onClick={()=>{
             navigate('/')
@@ -660,6 +668,7 @@ await html2canvas(input).then((canvas) => {
             </div>
             <div>
               <b>Note: </b> <span>Thank you for choosing us!</span>
+
             </div>
           </div>
         </div>
